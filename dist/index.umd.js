@@ -217,9 +217,9 @@
 
       clearTimeout(_timeout);
       _timeout = setTimeout(function () {
-        if (_el && _el.ptrElement && _shared.state === 'pending') {
+        /*if (_el && _el.ptrElement && _shared.state === 'pending') {
           _ptr.onReset(_el);
-        }
+        }*/
       }, 500);
 
       if (_shared.state === 'releasing' && _shared.distResisted > _el.distThreshold) {
@@ -229,14 +229,14 @@
         _el.ptrElement.classList.add(((_el.classPrefix) + "refresh"));
 
         _shared.timeout = setTimeout(function () {
-          var retval = _el.onRefresh(function () { return _ptr.onReset(_el); });
+          var retval = _el.onRefresh(function () { /*return _ptr.onReset(_el);*/ });
 
           if (retval && typeof retval.then === 'function') {
-            retval.then(function () { return _ptr.onReset(_el); });
+            retval.then(function () { /*return _ptr.onReset(_el);*/ });
           }
 
           if (!retval && !_el.onRefresh.length) {
-            _ptr.onReset(_el);
+            /*_ptr.onReset(_el);*/
           }
         }, _el.refreshTimeout);
       } else {
@@ -297,8 +297,11 @@
         }
 
         window.removeEventListener('scroll', _onScroll);
-      }
+      },
 
+      close: function close() {
+        onReset(_el);
+      }
     };
   });
 
@@ -379,13 +382,16 @@
     destroyAll: function destroyAll() {
       if (_shared.events) {
         _shared.events.destroy();
-
         _shared.events = null;
       }
 
       _shared.handlers.forEach(function (h) {
         h.destroy();
       });
+    },
+
+    close: function close() {
+      _shared.events.close();
     },
 
     init: function init(options) {
