@@ -2,7 +2,7 @@ export default `
 .__PREFIX__ptr {
   box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.12);
   pointer-events: none;
-  font-size: 0.85em;
+  font-size: 1em;
   font-weight: bold;
   top: 0;
   height: 0;
@@ -30,7 +30,7 @@ export default `
 }
 
 .__PREFIX__icon {
-  color: rgba(0, 0, 0, 0.3);
+  color: white;
   transition: transform .3s;
 }
 
