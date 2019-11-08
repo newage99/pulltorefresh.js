@@ -107,8 +107,6 @@ var _ptr = {
   update: update
 };
 
-var _timeout;
-
 var screenY = function screenY(event) {
   if (_shared.pointerEventsEnabled && _shared.supportsPointerEvents) {
     return event.screenY;
@@ -200,36 +198,20 @@ var _setupEvents = (function () {
     }
   }
 
+  function _refresh() {
+    _shared.state = 'refreshing';
+    _el.ptrElement.style[_el.cssProp] = (_el.distReload) + "px";
+
+    _el.ptrElement.classList.add(((_el.classPrefix) + "refresh"));
+  }
+
   function _onTouchEnd() {
     if (!(_el && _el.ptrElement && _shared.enable)) {
       return;
-    } // wait 1/2 sec before unmounting...
-
-
-    clearTimeout(_timeout);
-    _timeout = setTimeout(function () {
-      if (_el && _el.ptrElement && _shared.state === 'pending') {
-        _ptr.onReset(_el);
-      }
-    }, 500);
+    }
 
     if (_shared.state === 'releasing' && _shared.distResisted > _el.distThreshold) {
-      _shared.state = 'refreshing';
-      _el.ptrElement.style[_el.cssProp] = (_el.distReload) + "px";
-
-      _el.ptrElement.classList.add(((_el.classPrefix) + "refresh"));
-
-      _shared.timeout = setTimeout(function () {
-        var retval = _el.onRefresh(function () { return _ptr.onReset(_el); });
-
-        if (retval && typeof retval.then === 'function') {
-          retval.then(function () { return _ptr.onReset(_el); });
-        }
-
-        if (!retval && !_el.onRefresh.length) {
-          _ptr.onReset(_el);
-        }
-      }, _el.refreshTimeout);
+      _refresh();
     } else {
       if (_shared.state === 'refreshing') {
         return;
@@ -292,6 +274,11 @@ var _setupEvents = (function () {
 
     close: function close() {
       _ptr.onReset(_el);
+    },
+    refresh: function refresh() {
+      if (_shared.state !== 'refreshing') {
+        _refresh();
+      }
     }
   };
 });
@@ -384,6 +371,9 @@ var index = {
 
   close: function close() {
     _shared.events.close();
+  },
+  refresh: function refresh() {
+    _shared.events.refresh();
   },
 
   init: function init(options) {

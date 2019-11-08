@@ -1,8 +1,6 @@
 import _ptr from './api';
 import _shared from './shared';
 
-let _timeout;
-
 const screenY = function screenY(event) {
   if (_shared.pointerEventsEnabled && _shared.supportsPointerEvents) {
     return event.screenY;
@@ -93,6 +91,7 @@ export default () => {
     _shared.state = 'refreshing';
     _el.ptrElement.style[_el.cssProp] = `${_el.distReload}px`;
     _el.ptrElement.classList.add(`${_el.classPrefix}refresh`);
+    alert("refreshing");
   }
 
   function _onTouchEnd() {
