@@ -24,6 +24,9 @@ export default {
   close: function close() {
     _shared.events.close();
   },
+  refresh: function refresh() {
+    _shared.events.refresh();
+  },
   init(options = {}) {
     const handler = _setupHandler(options);
 

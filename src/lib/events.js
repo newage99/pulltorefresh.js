@@ -96,11 +96,11 @@ export default () => {
 
     // wait 1/2 sec before unmounting...
     clearTimeout(_timeout);
-    _timeout = setTimeout(() => {
+    /* _timeout = setTimeout(() => {
       if (_el && _el.ptrElement && _shared.state === 'pending') {
         _ptr.onReset(_el);
       }
-    }, 500);
+    }, 500); */
 
     if (_shared.state === 'releasing' && _shared.distResisted > _el.distThreshold) {
       _shared.state = 'refreshing';
@@ -108,7 +108,7 @@ export default () => {
       _el.ptrElement.style[_el.cssProp] = `${_el.distReload}px`;
       _el.ptrElement.classList.add(`${_el.classPrefix}refresh`);
 
-      _shared.timeout = setTimeout(() => {
+      /* _shared.timeout = setTimeout(() => {
         const retval = _el.onRefresh(() => _ptr.onReset(_el));
 
         if (retval && typeof retval.then === 'function') {
@@ -118,7 +118,7 @@ export default () => {
         if (!retval && !_el.onRefresh.length) {
           _ptr.onReset(_el);
         }
-      }, _el.refreshTimeout);
+      }, _el.refreshTimeout); */
     } else {
       if (_shared.state === 'refreshing') {
         return;
