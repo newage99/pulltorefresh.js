@@ -89,36 +89,19 @@ export default () => {
     }
   }
 
+  function _refresh() {
+    _shared.state = 'refreshing';
+    _el.ptrElement.style[_el.cssProp] = `${_el.distReload}px`;
+    _el.ptrElement.classList.add(`${_el.classPrefix}refresh`);
+  }
+
   function _onTouchEnd() {
     if (!(_el && _el.ptrElement && _shared.enable)) {
       return;
     }
 
-    // wait 1/2 sec before unmounting...
-    clearTimeout(_timeout);
-    /* _timeout = setTimeout(() => {
-      if (_el && _el.ptrElement && _shared.state === 'pending') {
-        _ptr.onReset(_el);
-      }
-    }, 500); */
-
     if (_shared.state === 'releasing' && _shared.distResisted > _el.distThreshold) {
-      _shared.state = 'refreshing';
-
-      _el.ptrElement.style[_el.cssProp] = `${_el.distReload}px`;
-      _el.ptrElement.classList.add(`${_el.classPrefix}refresh`);
-
-      /* _shared.timeout = setTimeout(() => {
-        const retval = _el.onRefresh(() => _ptr.onReset(_el));
-
-        if (retval && typeof retval.then === 'function') {
-          retval.then(() => _ptr.onReset(_el));
-        }
-
-        if (!retval && !_el.onRefresh.length) {
-          _ptr.onReset(_el);
-        }
-      }, _el.refreshTimeout); */
+      _refresh();
     } else {
       if (_shared.state === 'refreshing') {
         return;
@@ -181,6 +164,11 @@ export default () => {
     },
     close: function close() {
       _ptr.onReset(_el);
+    },
+    refresh: function refresh() {
+      if (_shared.state !== 'refreshing') {
+        _refresh();
+      }
     },
   };
 };
