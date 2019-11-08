@@ -25,8 +25,8 @@ export default `
 }
 
 .__PREFIX__text {
-  margin-top: .33em;
   color: white;
+  margin-top: .33em;
 }
 
 .__PREFIX__icon {

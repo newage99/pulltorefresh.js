@@ -179,5 +179,8 @@ export default () => {
 
       window.removeEventListener('scroll', _onScroll);
     },
+    close: function close() {
+      _ptr.onReset(_el);
+    },
   };
 };

@@ -21,6 +21,9 @@ export default {
       h.destroy();
     });
   },
+  close: function close() {
+    _shared.events.close();
+  },
   init(options = {}) {
     const handler = _setupHandler(options);
 
@@ -28,7 +31,6 @@ export default {
 
     return handler;
   },
-
   // export utils for testing
   _: {
     setupHandler: _setupHandler,
