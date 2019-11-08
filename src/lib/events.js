@@ -91,6 +91,9 @@ export default () => {
     _shared.state = 'refreshing';
     _el.ptrElement.style[_el.cssProp] = `${_el.distReload}px`;
     _el.ptrElement.classList.add(`${_el.classPrefix}refresh`);
+    _shared.timeout = setTimeout(() => {
+      _el.onRefresh();
+    }, _el.refreshTimeout);
   }
 
   function _onTouchEnd() {
