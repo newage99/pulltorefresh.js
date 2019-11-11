@@ -89,7 +89,7 @@ export default () => {
 
   function _refresh() {
     _shared.state = 'refreshing';
-    _el = _ptr.setupDOM(target);
+    //_el = _ptr.setupDOM(target);
     _el.ptrElement.style[_el.cssProp] = `${_el.distReload}px`;
     _el.ptrElement.classList.add(`${_el.classPrefix}refresh`);
     _shared.timeout = setTimeout(() => {
