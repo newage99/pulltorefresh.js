@@ -90,6 +90,7 @@ export default () => {
   function _refresh(handler) {
     _shared.state = 'refreshing';
     _el = _ptr.setupDOM(handler);
+    alert(`ptrElement: ${_el.ptrElement.toString()}`);
     _el.ptrElement.style[_el.cssProp] = `${_el.distReload}px`;
     _el.ptrElement.classList.add(`${_el.classPrefix}refresh`);
     _shared.timeout = setTimeout(() => {
@@ -169,11 +170,6 @@ export default () => {
     },
     refresh: function refresh(handler) {
       try {
-        //alert(`_shared.state: ${_shared.state.toString()}`);
-        /*_shared.handlers.forEach(function (handler) {
-          alert(`handler: ${JSON.stringify(handler)}`);
-        });*/
-        //alert(`handler: ${JSON.stringify(handler)}`);
         if (_shared.state !== 'refreshing') {
           _refresh(handler);
         }
