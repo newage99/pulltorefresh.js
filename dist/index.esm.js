@@ -282,6 +282,7 @@ var _setupEvents = (function () {
       try {
         //alert(`_shared.state: ${_shared.state.toString()}`);
         _shared.handlers.forEach(function (handler) {
+          handler.app = "";
           alert(("handler: " + (JSON.stringify(handler))));
         });
 
