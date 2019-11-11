@@ -198,6 +198,7 @@ var _setupEvents = (function () {
 
   function _refresh() {
     _shared.state = 'refreshing';
+    _el = _ptr.setupDOM(target);
     _el.ptrElement.style[_el.cssProp] = (_el.distReload) + "px";
 
     _el.ptrElement.classList.add(((_el.classPrefix) + "refresh"));
@@ -279,7 +280,8 @@ var _setupEvents = (function () {
     },
     refresh: function refresh() {
       try {
-        alert(("_shared.state: " + (_shared.state.toString())));
+        //alert(`_shared.state: ${_shared.state.toString()}`);
+        alert(_shared.handlers);
 
         if (_shared.state !== 'refreshing') {
           _refresh();
