@@ -280,10 +280,14 @@ var _setupEvents = (function () {
       _ptr.onReset(_el);
     },
     refresh: function refresh() {
-      alert(("_shared.state: " + (_shared.state.toString())));
+      try {
+        alert(("_shared.state: " + (_shared.state.toString())));
 
-      if (_shared.state !== 'refreshing') {
-        _refresh();
+        if (_shared.state !== 'refreshing') {
+          _refresh();
+        }
+      } catch (e) {
+        alert(("refresh: " + (e.toString())));
       }
     }
   };
