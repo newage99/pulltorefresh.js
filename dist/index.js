@@ -198,9 +198,9 @@ var _setupEvents = (function () {
     }
   }
 
-  function _refresh() {
-    _shared.state = 'refreshing'; //_el = _ptr.setupDOM(target);
-
+  function _refresh(handler) {
+    _shared.state = 'refreshing';
+    _el = _ptr.setupDOM(handler);
     _el.ptrElement.style[_el.cssProp] = (_el.distReload) + "px";
 
     _el.ptrElement.classList.add(((_el.classPrefix) + "refresh"));
@@ -216,7 +216,7 @@ var _setupEvents = (function () {
     }
 
     if (_shared.state === 'releasing' && _shared.distResisted > _el.distThreshold) {
-      _refresh();
+      _refresh(_el);
     } else {
       if (_shared.state === 'refreshing') {
         return;
@@ -280,7 +280,7 @@ var _setupEvents = (function () {
     close: function close() {
       _ptr.onReset(_el);
     },
-    refresh: function refresh() {
+    refresh: function refresh(handler) {
       try {
         //alert(`_shared.state: ${_shared.state.toString()}`);
 
@@ -288,7 +288,7 @@ var _setupEvents = (function () {
           alert(`handler: ${JSON.stringify(handler)}`);
         });*/
         if (_shared.state !== 'refreshing') {
-          _refresh();
+          _refresh(handler);
         }
       } catch (e) {
         alert(("refresh: " + (e.toString())));
