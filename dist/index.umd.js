@@ -289,6 +289,8 @@
         _ptr.onReset(_el);
       },
       refresh: function refresh() {
+        alert(("_shared.state: " + (_shared.state.toString())));
+
         if (_shared.state !== 'refreshing') {
           _refresh();
         }
