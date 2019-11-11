@@ -90,9 +90,6 @@ export default () => {
   function _refresh(handler) {
     _shared.state = 'refreshing';
     _el = _ptr.setupDOM(handler);
-    try {
-      alert(`ptrElement: ${JSON.stringify(_el.ptrElement)}`);
-    } catch (e) {}
     _el.ptrElement.style[_el.cssProp] = `${_el.distReload}px`;
     _el.ptrElement.classList.add(`${_el.classPrefix}refresh`);
     _shared.timeout = setTimeout(() => {
