@@ -284,7 +284,7 @@ var _setupEvents = (function () {
       try {
         //alert(`_shared.state: ${_shared.state.toString()}`);
         _shared.handlers.forEach(function (handler) {
-          alert(("handler: " + (handler.toString())));
+          alert(("handler: " + (JSON.stringify(handler))));
         });
 
         if (_shared.state !== 'refreshing') {
