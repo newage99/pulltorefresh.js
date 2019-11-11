@@ -170,10 +170,9 @@ export default () => {
     refresh: function refresh() {
       try {
         //alert(`_shared.state: ${_shared.state.toString()}`);
-        _shared.handlers.forEach(function (handler) {
-          handler.app = "";
+        /*_shared.handlers.forEach(function (handler) {
           alert(`handler: ${JSON.stringify(handler)}`);
-        });
+        });*/
         if (_shared.state !== 'refreshing') {
           _refresh();
         }
