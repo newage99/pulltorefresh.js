@@ -397,8 +397,8 @@
     close: function close() {
       _shared.events.close();
     },
-    refresh: function refresh() {
-      _shared.events.refresh();
+    refresh: function refresh(handler) {
+      _shared.events.refresh(handler);
     },
 
     init: function init(options) {
