@@ -1,6 +1,5 @@
 export default `
 .__PREFIX__ptr {
-  box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.12);
   pointer-events: none;
   font-size: 1em;
   font-weight: bold;
